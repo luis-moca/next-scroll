@@ -1,0 +1,10 @@
+/* Accesibilidad: se carga al final a propósito. */
+/* Si la persona pidió en su sistema "reducir movimiento", se apagan las animaciones.
+   Va en el último archivo porque en CSS, a igual especificidad, gana la regla que llega al final. */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv.pre{transform:none;opacity:1}
+  .draw{stroke-dashoffset:0}.pop{transform:none}.cell-pred{opacity:1}
+}
+@media (prefers-reduced-motion: reduce){.tk{transform:none}}

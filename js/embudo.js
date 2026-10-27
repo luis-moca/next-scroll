@@ -1,0 +1,76 @@
+// El embudo interactivo: capas clicables y partículas que caen.
+import { RM, el } from './util.js';
+
+/* embudo */
+(function(){
+  const S = [
+    {t:'Retrieval', c:'miles de M → ~5,000', g:'gBlue', css:'var(--g-blue)', col:'#2F5BFF', ic:'i-search', y1:20, y2:110, a:190, b:150, h:'Generar candidatos',
+     what:'Junta en milisegundos unos miles de posts que podrían interesarte, de entre todo lo que existe.',
+     li:[['i-net','Modelos two-tower: una red produce el vector del usuario y otra el de cada post.'],['i-search','Búsqueda de vecinos cercanos (FAISS, ScaNN) entre miles de millones de vectores.'],['i-split','Varias fuentes a la vez: gente que sigues, contenido parecido, tendencias, contenido nuevo.']], f:null},
+    {t:'Ranking', c:'~5,000 → ~500', g:'gViolet', css:'var(--g-violet)', col:'#7C4DFF', ic:'i-sort', y1:120, y2:210, a:145, b:110, h:'Ordenar con un modelo pesado',
+     what:'Una red neuronal grande calcula varias probabilidades por cada candidato y las combina en un solo score de valor.',
+     li:[['i-target','Predice like, comentar, compartir, tiempo de vista y reportar al mismo tiempo.'],['i-user','Usa cientos de señales: tu historial, el creador, el contexto, la hora.'],['i-chip','Aquí es donde más cómputo se gasta.']],
+     f:'valor = <span class="w">1.0</span> · <span class="p">P(ver completo)</span>\n      + <span class="w">2.0</span> · <span class="p">P(compartir)</span>\n      + <span class="w">0.5</span> · <span class="p">P(like)</span>\n      − <span class="w">5.0</span> · <span class="p">P(reportar)</span>\n<span class="cm">// pesos ilustrativos; se ajustan con A/B tests</span>'},
+    {t:'Re-ranking', c:'~500 → ~50', g:'gCoral', css:'var(--g-coral)', col:'#FF5B5B', ic:'i-shuffle', y1:220, y2:310, a:105, b:72, h:'Ajustar el orden final',
+     what:'Corrige lo que un orden puramente por score haría mal.',
+     li:[['i-shuffle','Diversidad: que no salgan cinco videos seguidos del mismo creador o tema.'],['i-eye','Integridad y moderación: contenido sensible, frescura, reglas de negocio.'],['i-mega','Mezcla los anuncios en las posiciones correctas.']], f:null},
+    {t:'Tu feed', c:'→ 1 a la vez', g:'gAmber', css:'var(--g-amber)', col:'#FFA51F', ic:'i-phone', y1:320, y2:400, a:67, b:40, h:'Servir y escuchar',
+     what:'Ves el resultado, y cada cosa que haces se vuelve datos para el siguiente ciclo.',
+     li:[['i-hand','Cada scroll, pausa y repetición se registra como señal.'],['i-wave','Esas señales llegan por streaming a los modelos en minutos.'],['i-clock','Todo el ciclo dura unos 100–200 ms.']], f:null}
+  ];
+  const svg = document.getElementById('fsvg'), panel = document.getElementById('panel');
+  const defs = el('defs', {}, svg);
+  const cp = el('clipPath', {id:'fclip'}, defs);
+  S.forEach(s => el('path', {d:`M${200-s.a} ${s.y1} L${200+s.a} ${s.y1} L${200+s.b} ${s.y2} L${200-s.b} ${s.y2} Z`}, cp));
+  const layers = S.map((s, i) => {
+    const g = el('g', {class:'layer', role:'tab', tabindex: i === 1 ? 0 : -1, 'aria-label': s.t}, svg);
+    el('path', {d:`M${200-s.a+6} ${s.y1} L${200+s.a-6} ${s.y1} Q${200+s.a} ${s.y1} ${200+s.a-3} ${s.y1+6} L${200+s.b+1} ${s.y2-6} Q${200+s.b-2} ${s.y2} ${200+s.b-8} ${s.y2} L${200-s.b+8} ${s.y2} Q${200-s.b+2} ${s.y2} ${200-s.b-1} ${s.y2-6} L${200-s.a+3} ${s.y1+6} Q${200-s.a} ${s.y1} ${200-s.a+6} ${s.y1} Z`, fill:`url(#${s.g})`}, g);
+    const my = (s.y1 + s.y2) / 2;
+    const t1 = el('text', {x:200, y:my - 2, 'text-anchor':'middle', fill:'#fff', 'font-family':'Bricolage Grotesque, sans-serif', 'font-weight':800, 'font-size': i === 3 ? 17 : 20}, g); t1.textContent = s.t;
+    const t2 = el('text', {x:200, y:my + 17, 'text-anchor':'middle', fill:'#fff', 'fill-opacity':.85, 'font-family':'JetBrains Mono, monospace', 'font-size':11}, g); t2.textContent = s.c;
+    g.addEventListener('click', () => sel(i));
+    g.addEventListener('keydown', e => {
+      if (['ArrowDown','ArrowRight'].includes(e.key)){ e.preventDefault(); sel((i+1)%4, true); }
+      if (['ArrowUp','ArrowLeft'].includes(e.key)){ e.preventDefault(); sel((i+3)%4, true); }
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); sel(i); }
+    });
+    return g;
+  });
+  // celular al fondo
+  const ph = el('g', {transform:'translate(184 414)'}, svg);
+  el('rect', {x:0, y:0, width:32, height:52, rx:8, fill:'#0A1A5C'}, ph);
+  el('rect', {x:4, y:6, width:24, height:36, rx:3, fill:'url(#gAmber)'}, ph);
+  // partículas
+  const pg = el('g', {'clip-path':'url(#fclip)', 'pointer-events':'none'}, svg);
+  const pts = [[20,190],[110,150],[115,147],[120,145],[210,110],[215,107],[220,105],[310,72],[315,70],[320,67],[400,40]];
+  const half = y => { for (let i = 1; i < pts.length; i++){ if (y <= pts[i][0]){ const [y0,h0] = pts[i-1], [y1,h1] = pts[i]; return h0 + (h1 - h0) * (y - y0) / (y1 - y0); } } return 40; };
+  const P = Array.from({length:70}, () => mk(true));
+  function mk(pre){ return {y: pre ? 20 + Math.random() * 370 : 14, u:(Math.random()*2-1)*.85, v:.7 + Math.random()*.9, k:Math.random(), c: el('circle', {r:2.6, fill:'#fff'}, pg)}; }
+  function tick(){
+    P.forEach((p, idx) => {
+      const prev = p.y; p.y += p.v;
+      for (const g of [115,215,315]) if (prev < g && p.y >= g && p.k < .4){ p.y = 999; }
+      if (p.y > 400){ p.c.remove(); P[idx] = mk(false); return; }
+      p.c.setAttribute('cx', 200 + p.u * half(p.y)); p.c.setAttribute('cy', p.y);
+      p.c.setAttribute('fill-opacity', .55 + .45 * (p.y / 400));
+    });
+    if (!RM) requestAnimationFrame(tick);
+  }
+  tick();
+  function sel(i, focus){
+    svg.classList.add('has');
+    layers.forEach((g, j) => { g.classList.toggle('on', j === i); g.setAttribute('aria-selected', j === i); g.setAttribute('tabindex', j === i ? 0 : -1); });
+    if (focus) layers[i].focus();
+    const s = S[i];
+    panel.style.setProperty('--c', s.col);
+    panel.innerHTML = `<div class="fade" style="display:grid;gap:18px;position:relative">
+      <div class="head"><span class="tile" style="background:${s.css}"><svg class="ic"><use href="#${s.ic}"/></svg></span><div><div class="eb">Etapa ${i+1} de 4 · ${s.c}</div><h3>${s.h}</h3></div></div>
+      <p class="muted">${s.what}</p>
+      <ul>${s.li.map(([ic, x]) => `<li><svg class="ic"><use href="#${ic}"/></svg><span>${x}</span></li>`).join('')}</ul>
+      ${s.f ? `<div class="formula">${s.f}</div>` : ''}
+      <div class="tabs">${S.map((x, j) => `<button class="tab" role="tab" aria-selected="${j===i}" data-j="${j}"><svg class="ic"><use href="#${x.ic}"/></svg>${x.t}</button>`).join('')}</div>
+    </div>`;
+    panel.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => sel(+b.dataset.j)));
+  }
+  sel(1);
+})();

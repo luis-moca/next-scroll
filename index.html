@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cómo piensa tu feed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/feed.css">
+<link rel="stylesheet" href="css/cripto.css">
+<link rel="stylesheet" href="css/modelo.css">
+<link rel="stylesheet" href="css/accesibilidad.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M4 13v6h16v-6M12 3v12M7 8l5-5 5 5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><path d="M5 5l9 7-9 7zM19 5v14"/></symbol>
+    <symbol id="i-loopback" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v5h5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h6"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3l11 10h4M3 17h3l3-3M14 10l3-3h4M18 4l3 3-3 3M18 14l3 3-3 3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 7c3 0 3-3 6-3s3 3 6 3 3-3 6-3M2 13c3 0 3-3 6-3s3 3 6 3 3-3 6-3M2 19c3 0 3-3 6-3s3 3 6 3 3-3 6-3"/></symbol>
+    <symbol id="i-loop" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></symbol>
+    <symbol id="i-split" viewBox="0 0 24 24"><path d="M12 3v6M12 9l-6 6v5M12 9l6 6v5"/><circle cx="6" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><circle cx="6" cy="13" r="2"/><circle cx="18" cy="13" r="2"/><circle cx="3.5" cy="20.5" r="1.5"/><circle cx="8.5" cy="20.5" r="1.5"/><path d="M11 6l-4 5M13 6l4 5M5.2 15l-1.2 4M6.8 15l1.2 4"/></symbol>
+    <symbol id="i-net" viewBox="0 0 24 24"><circle cx="4" cy="7" r="2"/><circle cx="4" cy="17" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="20" cy="12" r="2"/><path d="M6 7l4-2M6 7l4 5M6 17l4-5M6 17l4 2M14 5l4 6M14 12h4M14 19l4-6"/></symbol>
+    <symbol id="i-tokens" viewBox="0 0 24 24"><rect x="2" y="12" width="5" height="6" rx="1.5"/><rect x="9.5" y="12" width="5" height="6" rx="1.5"/><rect x="17" y="12" width="5" height="6" rx="1.5" stroke-dasharray="2 2"/><path d="M4.5 12C5 6 19 6 19.5 12M12 12c.5-3 7-3 7.5 0"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v7l-4 2v-9z"/></symbol>
+    <symbol id="i-nofunnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v7l-4 2v-9z"/><path d="M2 2l20 20"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 7V4M9 12v1M15 12v1M9 16h6"/><circle cx="12" cy="3" r="1"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></symbol>
+    <symbol id="i-mega" viewBox="0 0 24 24"><path d="M3 10v4h4l8 5V5L7 10zM18 9a4 4 0 0 1 0 6"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7zM12 12l9-5M12 12v10M12 12L3 7"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 2 1 3 3 0 0 1 2-1h6v15h-6a2 2 0 0 0-2 2 2 2 0 0 0-2-2H4zM12 5v16"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5a1.5 1.5 0 0 1 3 0v6M11 11V3.5a1.5 1.5 0 0 1 3 0V11M14 11V5a1.5 1.5 0 0 1 3 0v8c0 4-2.5 8-7 8-3 0-4.5-2-6-4l-2-3a1.5 1.5 0 0 1 2.4-1.8L8 15"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.2"/><circle cx="16" cy="16" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="16" cy="8" r="1.2"/><circle cx="8" cy="16" r="1.2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></symbol>
+    <symbol id="i-hammer" viewBox="0 0 24 24"><path d="M14 6l4 4M3 21l9-9M12 4l6 6-3 3-6-6z"/></symbol>
+    <symbol id="i-cpu-many" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16zM14 6l3 3"/></symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.2c-.6-.8-1.5-1.2-2.5-1.2-1.4 0-2.5.8-2.5 2s1.1 1.6 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-1.9-.4-2.5-1.2M12 6.5V8M12 16v1.5"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+    <symbol id="i-finger" viewBox="0 0 24 24"><path d="M12 4a7 7 0 0 0-7 7v2M19 11a7 7 0 0 0-3-5.7M12 8a3 3 0 0 0-3 3v3c0 2-.5 4-1.5 5.5M15 11v2c0 3-1 5.5-2.5 7.5M12 11v3c0 2.5-.8 4.8-2.2 6.5M18.5 14c-.2 2-.8 3.8-1.6 5.3"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2M6 6l9-3 2 3"/></symbol>
+    <symbol id="i-rules" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h3M14 16.5l1.5 1.5 3-3"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 6l6 6 4-4 8 8M21 10v6h-6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8z"/></symbol>
+    <symbol id="i-piggy" viewBox="0 0 24 24"><path d="M5 11a7 6 0 0 1 12-3h2l-1 3a6 6 0 0 1 1 3v2h-2l-1 3h-3v-2H9v2H6l-1-3a6 6 0 0 1 0-5zM15 11h.01"/></symbol>
+    <linearGradient id="gEm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0FA37F"/><stop offset="1" stop-color="#1BA6D9"/></linearGradient>
+    <linearGradient id="gCy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1BA6D9"/><stop offset="1" stop-color="#5B6BFF"/></linearGradient>
+    <linearGradient id="gGd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE58A"/><stop offset="1" stop-color="#F2B705"/></linearGradient>
+    <linearGradient id="gFlowC" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7FF0CF"/><stop offset="1" stop-color="#FFE58A"/></linearGradient>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F5BFF"/><stop offset="1" stop-color="#7C4DFF"/></linearGradient>
+    <linearGradient id="gViolet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C4DFF"/><stop offset="1" stop-color="#FF4FA0"/></linearGradient>
+    <linearGradient id="gCoral" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5B5B"/><stop offset="1" stop-color="#FF8A3D"/></linearGradient>
+    <linearGradient id="gAmber" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFA51F"/><stop offset="1" stop-color="#FFC94A"/></linearGradient>
+    <linearGradient id="gFlow" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8FE8FF"/><stop offset="1" stop-color="#FFC46B"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="dots" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Secciones">
+  <div class="wrap">
+    <div class="nav-in">
+      <a class="brand" href="#top" data-go="feed"><span class="lg"><svg class="ic"><use href="#i-funnel"/></svg></span><span>Cómo piensa tu feed</span></a>
+      <div class="chap" aria-label="Capítulos">
+        <button type="button" class="on" data-go="feed" id="chap-feed">1 · Feed</button>
+        <button type="button" data-go="cripto" id="chap-cripto">2 · Blockchain</button>
+      </div>
+      <ul data-for="cripto">
+        <li><a class="lnk" href="#cr-gano">Ya ganó</a></li>
+        <li><a class="lnk" href="#cr-agentes">Agentes</a></li>
+        <li><a class="lnk" href="#cr-prueba">Humanidad</a></li>
+        <li><a class="lnk" href="#cr-coord">Coordinación</a></li>
+      </ul>
+      <ul data-for="feed">
+        <li><a class="lnk" href="#historia">Historia</a></li>
+        <li><a class="lnk" href="#embudo">Embudo</a></li>
+        <li><a class="lnk" href="#infra">Infra</a></li>
+        <li><a class="lnk" href="#simulador">Simulador</a></li>
+        <li><a class="lnk" href="#modelo">Pruébalo</a></li>
+        <li><a class="lnk" href="#hoy">Hoy</a></li>
+        <li><a class="lnk" href="#lecturas">Lecturas</a></li>
+      </ul>
+      <div class="progress" id="progress"></div>
+    </div>
+  </div>
+</nav>
+
+<main id="pg-feed" class="page">
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-spark"/></svg></span>Motores de recomendación · 2003 → 2026</span>
+      <h1>Tu feed ya era IA <span class="grad-text">mucho antes</span> de ChatGPT.</h1>
+      <p class="lede">Instagram, YouTube, TikTok y los anuncios llevan más de quince años corriendo con machine learning. Lo que llegó en 2022 fue la IA generativa, y ahora usan esa misma receta para modelar tu comportamiento.</p>
+      <div class="ctas">
+        <a class="cta main" href="#historia">Ver la historia<svg class="ic"><use href="#i-down"/></svg></a>
+        <a class="cta ghost" href="#modelo"><svg class="ic"><use href="#i-hand"/></svg>Probar el modelo real</a>
+      </div>
+      <div class="stats" aria-label="Embudo de recomendación">
+        <div class="stat"><span class="t" style="background:var(--g-blue)"><svg class="ic"><use href="#i-search"/></svg></span><div><b>Miles de M</b><small>posts posibles</small></div></div>
+        <svg class="ic stat-arrow"><use href="#i-arrow"/></svg>
+        <div class="stat"><span class="t" style="background:var(--g-violet)"><svg class="ic"><use href="#i-sort"/></svg></span><div><b>~500</b><small>rankeados</small></div></div>
+        <svg class="ic stat-arrow"><use href="#i-arrow"/></svg>
+        <div class="stat"><span class="t" style="background:var(--g-coral)"><svg class="ic"><use href="#i-phone"/></svg></span><div><b>1</b><small>en tu pantalla</small></div></div>
+      </div>
+      <p class="note">Órdenes de magnitud ilustrativos · todo pasa en unos 100–200 ms</p>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="ring"></div><div class="ring r2"></div>
+      <i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i>
+      <div class="device"><span class="notch"></span><div class="screen"><div class="feed" id="hero-feed"></div></div></div>
+      <div class="bub b1"><span class="t" style="background:var(--g-coral)"><svg class="ic"><use href="#i-heart"/></svg></span><div>P(like) 0.82<small>predicción</small></div></div>
+      <div class="bub b2"><span class="t" style="background:var(--g-mint)"><svg class="ic"><use href="#i-share"/></svg></span><div>P(compartir) 0.31<small>predicción</small></div></div>
+      <div class="bub b3"><span class="t" style="background:var(--g-blue)"><svg class="ic"><use href="#i-eye"/></svg></span><div>Vio 100%<small>señal implícita</small></div></div>
+      <div class="bub b4"><span class="t" style="background:var(--g-amber)"><svg class="ic"><use href="#i-loop"/></svg></span><div>Modelo +1 min<small>se actualizó</small></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-in" id="ticker"></div></div>
+
+<section class="band" id="premisa">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-target"/></svg></span>Primero, una corrección</span>
+      <h2>Lo nuevo no es la IA. Es la <span class="grad-text">IA generativa</span>.</h2>
+    </div>
+    <div class="vs">
+      <div class="vs-card a rv">
+        <span class="yrs">2003 – hoy</span>
+        <h3>Machine learning predictivo</h3>
+        <p class="muted">Modelos que estiman probabilidades por cada post. Así funcionan los feeds desde hace años. Estas empresas iban adelante porque tenían los datos, el dinero y la infraestructura para hacerlo a escala gigante.</p>
+        <div class="probs" aria-label="Ejemplo de predicciones">
+          <div class="prob"><span>P(like)</span><span class="tr"><span class="fl" style="--v:82%;background:var(--g-coral)"></span></span><span>0.82</span></div>
+          <div class="prob"><span>P(ver completo)</span><span class="tr"><span class="fl" style="--v:64%;background:var(--g-blue);animation-delay:-.6s"></span></span><span>0.64</span></div>
+          <div class="prob"><span>P(compartir)</span><span class="tr"><span class="fl" style="--v:31%;background:var(--g-mint);animation-delay:-1.2s"></span></span><span>0.31</span></div>
+          <div class="prob"><span>P(reportar)</span><span class="tr"><span class="fl" style="--v:3%;background:var(--g-amber);animation-delay:-1.8s"></span></span><span>0.02</span></div>
+        </div>
+      </div>
+      <div class="vs-mid"><b>vs</b></div>
+      <div class="vs-card b rv">
+        <span class="yrs">2022 – hoy</span>
+        <h3>IA generativa y LLMs</h3>
+        <p class="muted">Transformers enormes que predicen la siguiente palabra. Las empresas no le pegaron un chatbot al feed: tomaron la receta (escalar, modelar secuencias, generar en vez de clasificar) y la aplicaron a tu historial.</p>
+        <div class="typer" aria-label="Ejemplo de predicción de la siguiente palabra">
+          <div class="line"><span id="typed">El perro le ladra al</span><span class="caret"></span></div>
+          <div class="toks"><span>El</span><span>perro</span><span>le</span><span>ladra</span><span>al</span><span style="background:rgba(255,210,122,.35)">→ cartero</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="historia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-clock"/></svg></span>Parte 1 · Cómo lo hacían</span>
+      <h2>Cuatro etapas, y ninguna fue un script de Python.</h2>
+      <p class="lede">Cada salto cambió quién hacía el trabajo pesado: primero las matemáticas, luego los ingenieros, luego las redes neuronales y ahora modelos al estilo LLM.</p>
+    </div>
+    <div class="tl" id="tl">
+      <div class="tl-line"></div>
+
+      <article class="era" style="--c:var(--g-mint)">
+        <span class="era-node"><svg class="ic"><use href="#i-grid"/></svg></span>
+        <div class="illo rv"><svg viewBox="0 0 320 200" id="ill-matrix"></svg><span class="lbl">usuarios × películas</span></div>
+        <div class="era-txt rv">
+          <span class="yr"><i></i>~2000 – 2010</span>
+          <h3>Filtrado colaborativo</h3>
+          <p>"A la gente que le gustó X también le gustó Y." Amazon publicó su método <em>item-to-item</em> en 2003.</p>
+          <p class="muted">En el Netflix Prize (2006–2009) Netflix ofreció un millón de dólares a quien mejorara su recomendador 10%. Ganó la factorización de matrices: se rellenan los huecos de la tabla con "gustos ocultos". Son los antepasados de los embeddings.</p>
+          <div class="facts">
+            <div class="fact"><span class="k">Idea</span><span class="v">Parecido entre usuarios</span></div>
+            <div class="fact"><span class="k">Matemática</span><span class="v">Factorización (SVD)</span></div>
+            <div class="fact"><span class="k">Ejemplos</span><span class="v">Amazon, Netflix Prize</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="era" style="--c:var(--g-amber)">
+        <span class="era-node"><svg class="ic"><use href="#i-tree"/></svg></span>
+        <div class="illo rv">
+          <svg viewBox="0 0 320 200" font-family="JetBrains Mono, monospace" font-size="10">
+            <g stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round">
+              <path class="draw" d="M160 42 L80 92"/><path class="draw" d="M160 42 L240 92" style="animation-delay:.2s"/>
+              <path class="draw" d="M80 106 L40 156" style="animation-delay:.5s"/><path class="draw" d="M80 106 L120 156" style="animation-delay:.6s"/>
+              <path class="draw" d="M240 106 L200 156" style="animation-delay:.7s"/><path class="draw" d="M240 106 L280 156" style="animation-delay:.8s"/>
+            </g>
+            <g text-anchor="middle">
+              <rect x="100" y="20" width="120" height="26" rx="13" fill="#fff"/><text x="160" y="37" fill="#7A3E00">¿likes 7d &gt; 3?</text>
+              <rect x="28" y="86" width="104" height="24" rx="12" fill="#fff"/><text x="80" y="102" fill="#7A3E00">¿hora &gt; 20h?</text>
+              <rect x="188" y="86" width="104" height="24" rx="12" fill="#fff"/><text x="240" y="102" fill="#7A3E00">¿video &lt; 30s?</text>
+              <g class="pop" style="animation-delay:.9s"><circle cx="40" cy="166" r="16" fill="#fff" fill-opacity=".35"/><text x="40" y="170" fill="#fff" font-weight="600">.12</text></g>
+              <g class="pop" style="animation-delay:1s"><circle cx="120" cy="166" r="16" fill="#fff" fill-opacity=".6"/><text x="120" y="170" fill="#7A3E00" font-weight="600">.47</text></g>
+              <g class="pop" style="animation-delay:1.1s"><circle cx="200" cy="166" r="16" fill="#fff" fill-opacity=".45"/><text x="200" y="170" fill="#7A3E00" font-weight="600">.31</text></g>
+              <g class="pop" style="animation-delay:1.2s"><circle cx="280" cy="166" r="16" fill="#fff"/><text x="280" y="170" fill="#7A3E00" font-weight="600">.86</text></g>
+            </g>
+          </svg>
+          <span class="lbl">features hechas a mano</span>
+        </div>
+        <div class="era-txt rv">
+          <span class="yr"><i></i>~2010 – 2016</span>
+          <h3>Modelos lineales y features a mano</h3>
+          <p>Para anuncios, Google y Facebook usaban regresión logística con miles de millones de variables, y gradient boosted trees. Facebook publicó en 2014 un paper que combina los dos.</p>
+          <p class="muted">El trabajo pesado lo hacían ingenieros inventando features: "¿cuántos likes le dio a esta página en 7 días?", "hora del día × tipo de contenido". Había ejércitos de gente haciendo eso.</p>
+          <div class="facts">
+            <div class="fact"><span class="k">Modelos</span><span class="v">Regresión logística, GBDT</span></div>
+            <div class="fact"><span class="k">Infra</span><span class="v">Hadoop, Spark, batch diario</span></div>
+            <div class="fact"><span class="k">Cuello</span><span class="v">Inventar features a mano</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="era" style="--c:var(--g-blue)">
+        <span class="era-node"><svg class="ic"><use href="#i-net"/></svg></span>
+        <div class="illo rv"><svg viewBox="0 0 320 200" id="ill-net"></svg><span class="lbl">red multi-tarea</span></div>
+        <div class="era-txt rv">
+          <span class="yr"><i></i>~2016 – 2022</span>
+          <h3>Deep learning y el embudo</h3>
+          <p>YouTube publicó su recomendador con redes neuronales en 2016, Google sacó Wide &amp; Deep ese mismo año, Meta publicó DLRM en 2019 y Alibaba DIN. De ahí salió el embudo que casi todos usan hasta hoy.</p>
+          <p class="muted">Las redes aprenden solas lo que antes se diseñaba a mano. TikTok sumó entrenamiento online (paper Monolith, 2022): el modelo se actualiza cada pocos minutos.</p>
+          <div class="facts">
+            <div class="fact"><span class="k">Modelos</span><span class="v">Two-tower, multi-tarea</span></div>
+            <div class="fact"><span class="k">Infra</span><span class="v">Embeddings de TB, GPUs</span></div>
+            <div class="fact"><span class="k">Papers</span><span class="v">YouTube DNN, DLRM, Monolith</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="era" style="--c:var(--g-violet)">
+        <span class="era-node"><svg class="ic"><use href="#i-tokens"/></svg></span>
+        <div class="illo rv"><svg viewBox="0 0 320 200" id="ill-tf"></svg><span class="lbl">atención sobre tu historial</span></div>
+        <div class="era-txt rv">
+          <span class="yr"><i></i>2024 – hoy</span>
+          <h3>Recomendadores generativos</h3>
+          <p>Tu historial se trata como una frase y el modelo predice tu siguiente acción, igual que un LLM predice la siguiente palabra. Meta mostró que estos modelos siguen leyes de escalamiento: más cómputo da mejoras predecibles.</p>
+          <p class="muted">Algunas empresas ya intentan tirar el embudo de 2016 y reemplazarlo por un solo modelo. Lo ves en la parte 2.</p>
+          <div class="facts">
+            <div class="fact"><span class="k">Modelos</span><span class="v">Transformers de acciones</span></div>
+            <div class="fact"><span class="k">Escala</span><span class="v">Hasta billones de parámetros</span></div>
+            <div class="fact"><span class="k">Papers</span><span class="v">HSTU, TIGER, OneRec</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="embudo">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-funnel"/></svg></span>La arquitectura que casi todos usan</span>
+      <h2>De miles de millones de posts a uno, en milisegundos.</h2>
+      <p class="lede">Ningún modelo puede evaluar todo con detalle en lo que tardas en hacer scroll. Por eso se filtra por etapas: barato al principio, caro y preciso al final. Toca cada capa.</p>
+    </div>
+    <div class="funnel">
+      <div class="rv">
+        <svg class="fsvg" id="fsvg" viewBox="0 0 400 470" role="tablist" aria-label="Etapas del embudo"></svg>
+      </div>
+      <div class="panel rv" id="panel" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band navy" id="infra">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-chip"/></svg></span>Lo que hay debajo</span>
+      <h2>La infraestructura es la mitad del secreto.</h2>
+      <p class="lede">El modelo es solo una pieza. Lo difícil es alimentarlo con datos frescos, servirlo a miles de millones de personas y medir cada cambio.</p>
+    </div>
+    <div class="pipe-box rv">
+      <svg class="pipe" id="pipe" viewBox="0 0 900 130" role="img" aria-label="Ciclo de datos: tu app, streaming, feature store, modelo y tu feed">
+        <path d="M70 52 H830" stroke="rgba(255,255,255,.18)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M70 52 H830" stroke="url(#gFlow)" stroke-width="4" stroke-linecap="round" class="flow" style="stroke-dasharray:8 16"/>
+        <g id="pipe-dots"></g>
+        <g id="pipe-nodes"></g>
+      </svg>
+    </div>
+    <div class="infra">
+      <div class="icard w3 rv"><span class="tile beat" style="background:var(--g-blue)"><svg class="ic"><use href="#i-db"/></svg></span><span class="k">Memoria</span><h3>Tablas de embeddings de terabytes</h3><p>Cada usuario, video, hashtag y anunciante tiene su vector. Esas tablas no caben en una sola máquina, así que se reparten en clusters enteros. En muchos recomendadores pesan más que la red neuronal.</p></div>
+      <div class="icard w3 rv"><span class="tile wave-move" style="background:var(--g-mint)"><svg class="ic"><use href="#i-wave"/></svg></span><span class="k">Tiempo real</span><h3>Feature stores y streaming</h3><p>Con Kafka y Flink, lo que hiciste hace tres segundos ya cuenta para lo siguiente que ves.</p></div>
+      <div class="icard rv"><span class="tile spin-slow" style="background:var(--g-violet)"><svg class="ic"><use href="#i-loop"/></svg></span><span class="k">Aprendizaje</span><h3>Entrenamiento online</h3><p>Modelos que se actualizan cada pocos minutos en lugar de una vez al día.</p></div>
+      <div class="icard rv"><span class="tile" style="background:var(--g-coral)"><svg class="ic"><use href="#i-split"/></svg></span><span class="k">Medición</span><h3>A/B testing masivo</h3><p>Miles de experimentos a la vez. Ningún cambio sale sin probarse contra métricas reales.</p></div>
+      <div class="icard rv"><span class="tile beat" style="background:var(--g-amber)"><svg class="ic"><use href="#i-chip"/></svg></span><span class="k">Hardware</span><h3>GPUs y chips propios</h3><p>Meta diseña sus propios chips (MTIA) y Google tiene TPUs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="simulador">
+  <div class="wrap tt">
+    <div class="tt-copy rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-phone"/></svg></span>El caso TikTok</span>
+      <h2>La ventaja no fue solo el algoritmo. Fue el diseño.</h2>
+      <p class="lede">Un video a pantalla completa, uno a la vez, de 15 segundos, genera señales muy limpias. Y muchas por minuto.</p>
+      <div class="why">
+        <div><span class="t" style="background:var(--g-blue)"><svg class="ic"><use href="#i-phone"/></svg></span><p><b>Un video a la vez</b><span>Se sabe exactamente qué te detuvo. En un feed con cinco cosas en pantalla, no.</span></p></div>
+        <div><span class="t" style="background:var(--g-coral)"><svg class="ic"><use href="#i-eye"/></svg></span><p><b>Señales implícitas</b><span>Ver completo, repetir o saltar en un segundo dice más que un like.</span></p></div>
+        <div><span class="t" style="background:var(--g-violet)"><svg class="ic"><use href="#i-dice"/></svg></span><p><b>Exploración</b><span>Mete contenido al azar para descubrir gustos que ni tú sabías.</span></p></div>
+      </div>
+    </div>
+    <div class="sim rv" id="sim">
+      <div>
+        <div class="mini"><div class="phone" id="phone"><div class="pic" id="ppic"></div><span class="badge" id="badge" hidden><svg class="ic"><use href="#i-dice"/></svg>exploración</span><span class="topic" id="ptopic"></span><span class="cap" id="pcap"></span></div></div>
+        <div class="acts">
+          <button class="btn" data-r="1.5" data-l="like" id="b-like"><span class="t" style="background:var(--g-coral)"><svg class="ic"><use href="#i-heart"/></svg></span><span>Like<small>+1.5</small></span></button>
+          <button class="btn" data-r="2" data-l="compartió" id="b-share"><span class="t" style="background:var(--g-mint)"><svg class="ic"><use href="#i-share"/></svg></span><span>Compartir<small>+2.0</small></span></button>
+          <button class="btn" data-r="1" data-l="lo vio completo" id="b-full"><span class="t" style="background:var(--g-blue)"><svg class="ic"><use href="#i-eye"/></svg></span><span>Ver todo<small>+1.0</small></span></button>
+          <button class="btn" data-r="-0.8" data-l="saltó en 1 s" id="b-skip"><span class="t" style="background:#5B6690"><svg class="ic"><use href="#i-skip"/></svg></span><span>Saltar<small>−0.8</small></span></button>
+        </div>
+      </div>
+      <div class="prof">
+        <div>
+          <h4><span>Lo que cree que te gusta</span><button class="reset" id="reset"><svg class="ic"><use href="#i-loopback"/></svg>reiniciar</button></h4>
+          <div class="bars" id="bars-w"></div>
+        </div>
+        <div>
+          <h4><span>Probabilidad del siguiente video</span></h4>
+          <div class="bars" id="bars-p"></div>
+        </div>
+        <div class="ctrl">
+          <label for="eps"><span>Exploración</span><span class="mono" id="eps-v">15%</span></label>
+          <input type="range" id="eps" min="0" max="60" value="15">
+          <small>Más alto = más videos al azar para descubrir gustos nuevos.</small>
+        </div>
+        <div>
+          <h4><span>Señales enviadas</span><span class="mono" id="sig-n">0</span></h4>
+          <div class="log" id="log"><span>Toca un botón para mandar tu primera señal.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="modelo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-cube"/></svg></span>Pruébalo de verdad · modelo real</span>
+      <h2>Elige 5 películas. Un modelo real te recomienda 10.</h2>
+      <p class="lede">El simulador era de juguete. Este no: aprendió de <span id="m-calif">81,116</span> calificaciones de <span id="m-pers">610</span> personas reales de MovieLens y corre aquí mismo, en tu navegador. Compara sus dos modos.</p>
+    </div>
+    <div class="rec">
+      <div class="rec-pick panel-g rv">
+        <div class="rp-head"><h3>Tus películas</h3><span class="rp-count mono" id="rp-count"></span></div>
+        <div class="rp-box">
+          <label class="rp-search" for="rp-q"><svg class="ic"><use href="#i-search"/></svg><input id="rp-q" type="search" placeholder="Busca en inglés: Matrix, Toy Story…" autocomplete="off" aria-label="Buscar película" aria-controls="rp-results" disabled></label>
+          <ul class="rp-results" id="rp-results" role="listbox" hidden></ul>
+        </div>
+        <div class="rp-slots" id="rp-slots"></div>
+        <div class="rp-presets"><span class="mono">Perfiles de ejemplo</span><div id="rp-presets"></div></div>
+        <button type="button" class="rp-clear" id="rp-clear">Vaciar y elegir las mías</button>
+      </div>
+      <div class="rec-out rv">
+        <div class="ro-tabs" role="tablist" aria-label="Modo">
+          <button type="button" role="tab" data-modo="preciso" aria-selected="true">Modo preciso</button>
+          <button type="button" role="tab" data-modo="parecido" aria-selected="false">Modo parecido</button>
+        </div>
+        <div class="ro-cols" id="ro-cols" data-modo="preciso">
+          <div class="ro-col panel-g c-preciso" data-col="preciso">
+            <div class="ro-head"><span class="tile"><svg class="ic"><use href="#i-target"/></svg></span><div><h3>Modo preciso</h3><p>Acierta más, pero tira a clásicos famosos.</p></div></div>
+            <p class="ro-med mono" id="med-preciso"></p>
+            <ol class="ro-list" id="list-preciso"></ol>
+          </div>
+          <div class="ro-col panel-g c-parecido" data-col="parecido">
+            <div class="ro-head"><span class="tile"><svg class="ic"><use href="#i-tag"/></svg></span><div><h3>Modo parecido</h3><p>Acierta un poco menos, pero se parece más a lo tuyo.</p></div></div>
+            <p class="ro-med mono" id="med-parecido"></p>
+            <ol class="ro-list" id="list-parecido"></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rec-map panel-g rv">
+      <div class="rm-head">
+        <div><span class="k-lbl">Mapa del catálogo</span><h3>Las 2,269 películas, acomodadas por lo que aprendió el modelo</h3><p>Cada punto es una película y quedan cerca las que ve la misma gente. Son 64 dimensiones aplastadas en 2, así que es un mapa aproximado. Toca un punto para agregarlo a tus películas.</p></div>
+        <div class="seg" role="group" aria-label="Recomendaciones en el mapa">
+          <button type="button" class="c-preciso" data-map-modo="preciso" aria-pressed="false"><i></i>Preciso</button>
+          <button type="button" class="c-parecido" data-map-modo="parecido" aria-pressed="true"><i></i>Parecido</button>
+        </div>
+      </div>
+      <div class="rm-canvas"><canvas id="rm-cv" aria-label="Mapa de películas"></canvas><div class="rm-tip" id="rm-tip" hidden></div></div>
+      <div class="rm-legend" id="rm-legend"></div>
+      <p class="rm-note" id="m-mapa"></p>
+    </div>
+    <div class="rec-metrics panel-g rv" id="rec-metrics"></div>
+    <p class="rec-src" id="rec-src"></p>
+  </div>
+</section>
+
+<section class="band" id="cambio">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-shuffle"/></svg></span>Entonces, ¿qué cambió?</span>
+      <h2>No solo fue velocidad. Cambió el proceso.</h2>
+    </div>
+    <div class="swap-list">
+      <div class="sw rv"><span class="old"><svg class="ic"><use href="#i-hammer"/></svg>Features diseñadas a mano</span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="new" style="--c:var(--g-blue)"><svg class="ic"><use href="#i-net"/></svg>Embeddings que el modelo aprende solo</span></div>
+      <div class="sw rv"><span class="old"><svg class="ic"><use href="#i-clock"/></svg>Reentrenar una vez al día</span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="new" style="--c:var(--g-mint)"><svg class="ic"><use href="#i-wave"/></svg>Aprender en streaming, cada minutos</span></div>
+      <div class="sw rv"><span class="old"><svg class="ic"><use href="#i-target"/></svg>Optimizar solo clics (CTR)</span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="new" style="--c:var(--g-violet)"><svg class="ic"><use href="#i-sort"/></svg>Muchos objetivos ponderados</span></div>
+      <div class="sw rv"><span class="old"><svg class="ic"><use href="#i-db"/></svg>Servidores con CPU</span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="new" style="--c:var(--g-amber)"><svg class="ic"><use href="#i-chip"/></svg>GPUs y chips propios</span></div>
+      <div class="sw rv"><span class="old"><svg class="ic"><use href="#i-cpu-many"/></svg>Muchos modelos chicos</span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="new" style="--c:var(--g-coral)"><svg class="ic"><use href="#i-cube"/></svg>Pocos modelos gigantes</span></div>
+      <div class="sw rv"><span class="old"><svg class="ic"><use href="#i-search"/></svg>Clasificar: ¿le gustará?</span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="new" style="--c:var(--g-hero)"><svg class="ic"><use href="#i-spark"/></svg>Generar su siguiente acción</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="hoy">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-spark"/></svg></span>Parte 2 · El cutting-edge, 2024 – 2026</span>
+      <h2>Lo que están haciendo hoy las mejores.</h2>
+      <p class="lede">Sí entran fuerte los LLMs, pero de una forma más interesante que poner ChatGPT en la app.</p>
+    </div>
+
+    <div class="gen rv">
+      <div>
+        <span class="pill"><span class="dot"><svg class="ic"><use href="#i-tokens"/></svg></span>El cambio más grande</span>
+        <h3>Tu historial como un idioma</h3>
+        <p>En vez de preguntar "¿qué probabilidad hay de like en este video?", el modelo lee tu secuencia de acciones como un LLM lee una frase y predice la siguiente.</p>
+      </div>
+      <div class="stream-box">
+        <div class="stream" id="stream" aria-hidden="true"></div>
+        <div class="analog">
+          <span class="k">LLM</span><span>"El perro le ladra al ___"</span>
+          <span class="k">Feed</span><span>vio fútbol · like a tacos · saltó memes → ___</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edge">
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:var(--g-blue)"><svg class="ic"><use href="#i-cube"/></svg></span><span class="l">a</span></div><h3>Recomendadores generativos que escalan</h3><p>Meta publicó HSTU en 2024: modelos de hasta billones de parámetros que siguen leyes de escalamiento como los LLMs. Lo llevó a anuncios con GEM y su retrieval Andromeda.</p><div class="chips"><span class="chip">Meta</span><span class="chip">HSTU</span><span class="chip">GEM</span></div></article>
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:var(--g-mint)"><svg class="ic"><use href="#i-tag"/></svg></span><span class="l">b</span></div><h3>Semantic IDs: videos como palabras</h3><p>Cada item se representa con unos tokens que dicen de qué trata. El modelo genera el ID del siguiente video token por token. Ayuda con contenido nuevo sin historial.</p><div class="chips"><span class="chip">Google TIGER</span><span class="chip">YouTube</span><span class="chip">Spotify</span></div></article>
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:var(--g-coral)"><svg class="ic"><use href="#i-nofunnel"/></svg></span><span class="l">c</span></div><h3>Matar el embudo completo</h3><p>Kuaishou, rival chino de TikTok, presentó OneRec en 2025: un solo modelo generativo que reemplaza retrieval, ranking y re-ranking. Reportaron que corre en producción.</p><div class="chips"><span class="chip">Kuaishou</span><span class="chip">OneRec</span></div></article>
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:var(--g-violet)"><svg class="ic"><use href="#i-bot"/></svg></span><span class="l">d</span></div><h3>Ranking basado en un LLM</h3><p>X dijo que movía su ranking a un modelo derivado de Grok y quitó muchas features hechas a mano. A inicios de 2026 publicó código de esa versión.</p><div class="chips"><span class="chip">X</span><span class="chip warn">sin verificar a detalle</span></div></article>
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:var(--g-amber)"><svg class="ic"><use href="#i-image"/></svg></span><span class="l">e</span></div><h3>Entender el contenido, no solo los clics</h3><p>Modelos multimodales ven el video, oyen el audio y leen el texto. Un video nuevo ya no es desconocido: el sistema sabe de qué trata desde el segundo cero.</p><div class="chips"><span class="chip">cold start</span><span class="chip">moderación</span></div></article>
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:var(--g-hero)"><svg class="ic"><use href="#i-mega"/></svg></span><span class="l">f</span></div><h3>Anuncios generados por IA</h3><p>Meta Advantage+ y Google Performance Max generan variantes de imagen, video y texto, y escogen cuál mostrarle a cada persona.</p><div class="chips"><span class="chip">Meta</span><span class="chip">Google</span></div></article>
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:linear-gradient(135deg,#0A1A5C,#2F5BFF)"><svg class="ic"><use href="#i-cpu-many"/></svg></span><span class="l">g</span></div><h3>Modelos fundacionales de recomendación</h3><p>Un modelo gigante entrenado con todo el comportamiento, reutilizado para home, búsqueda y notificaciones, como un LLM base.</p><div class="chips"><span class="chip">Netflix</span><span class="chip">Pinterest</span></div></article>
+      <article class="ecard glow rv"><div class="top"><span class="tile" style="background:linear-gradient(135deg,#FF4FA0,#FFA51F)"><svg class="ic"><use href="#i-chat"/></svg></span><span class="l">h</span></div><h3>Controlar tu feed con lenguaje</h3><p>Empieza a aparecer la opción de ver y editar en lenguaje natural lo que el algoritmo cree que te interesa, o pedir playlists escribiendo.</p><div class="chips"><span class="chip">Instagram</span><span class="chip">Spotify</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="lecturas">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-book"/></svg></span>Para profundizar</span>
+      <h2>Tres papers, en este orden, cuentan toda la historia.</h2>
+    </div>
+    <div class="reads">
+      <a class="read rv" href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/" target="_blank" rel="noopener" style="--c:var(--g-blue)">
+        <div class="cover"><span class="org"><svg class="ic"><use href="#i-play"/></svg>YouTube · Google</span><span class="yr">2016</span><div class="paper"><i></i><i></i><i></i><i></i><span class="fig"></span><i></i></div></div>
+        <div class="body"><h3>Deep Neural Networks for YouTube Recommendations</h3><p>El nacimiento del embudo moderno: retrieval y ranking con redes neuronales.</p><span class="go">research.google<svg class="ic"><use href="#i-ext"/></svg></span></div>
+      </a>
+      <a class="read rv" href="https://arxiv.org/abs/2209.07663" target="_blank" rel="noopener" style="--c:var(--g-coral)">
+        <div class="cover"><span class="org"><svg class="ic"><use href="#i-wave"/></svg>ByteDance</span><span class="yr">2022</span><div class="paper"><i></i><i></i><i></i><i></i><span class="fig"></span><i></i></div></div>
+        <div class="body"><h3>Monolith</h3><p>Entrenamiento en tiempo real y tablas de embeddings sin colisiones. Una pieza clave del motor de TikTok.</p><span class="go">arxiv.org<svg class="ic"><use href="#i-ext"/></svg></span></div>
+      </a>
+      <a class="read rv" href="https://arxiv.org/abs/2402.17152" target="_blank" rel="noopener" style="--c:var(--g-violet)">
+        <div class="cover"><span class="org"><svg class="ic"><use href="#i-cube"/></svg>Meta</span><span class="yr">2024</span><div class="paper"><i></i><i></i><i></i><i></i><span class="fig"></span><i></i></div></div>
+        <div class="body"><h3>Actions Speak Louder than Words (HSTU)</h3><p>Recomendación como generación de secuencias, con leyes de escalamiento.</p><span class="go">arxiv.org<svg class="ic"><use href="#i-ext"/></svg></span></div>
+      </a>
+    </div>
+    <div class="extra rv">
+      <span class="muted mono" style="font-size:12px">EXTRAS</span>
+      <a href="https://arxiv.org/abs/1606.07792" target="_blank" rel="noopener"><svg class="ic"><use href="#i-book"/></svg>Wide &amp; Deep (2016)</a>
+      <a href="https://arxiv.org/abs/1906.00091" target="_blank" rel="noopener"><svg class="ic"><use href="#i-book"/></svg>DLRM (2019)</a>
+      <a href="https://arxiv.org/abs/2305.05065" target="_blank" rel="noopener"><svg class="ic"><use href="#i-book"/></svg>TIGER (2023)</a>
+      <a href="https://arxiv.org/abs/2502.18965" target="_blank" rel="noopener"><svg class="ic"><use href="#i-book"/></svg>OneRec (2025)</a>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="final rv">
+      <i class="bl"></i><i class="bl"></i>
+      <div class="lbl"><svg class="ic"><use href="#i-spark"/></svg>En resumen</div>
+      <p class="q">Para ellos tu historial de scroll es un idioma, y el modelo está <em>aprendiendo a hablarlo</em>.</p>
+      <a class="cta" href="#top">Volver arriba<svg class="ic" style="transform:rotate(180deg)"><use href="#i-down"/></svg></a>
+      <div class="big-ic" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><rect x="30" y="8" width="60" height="104" rx="14" fill="rgba(255,255,255,.15)" stroke="#fff" stroke-width="3"/><rect x="38" y="22" width="44" height="60" rx="6" fill="rgba(255,255,255,.25)"/><path d="M54 42v20l16-10z" fill="#fff"/><circle cx="60" cy="98" r="4" fill="#fff"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <a class="next-ch rv" href="#cripto" data-go="cripto">
+      <div>
+        <span class="k">Siguiente capítulo</span>
+        <h2>Blockchain después del hype</h2>
+        <p>Dónde sí tiene futuro fuera de la especulación: stablecoins, pagos para agentes de IA y prueba de humanidad.</p>
+        <span class="cta">Ir al capítulo 2<svg class="ic"><use href="#i-arrow"/></svg></span>
+      </div>
+      <svg class="nc-vis" viewBox="0 0 300 240" id="nc-chain" aria-hidden="true"></svg>
+    </a>
+  </div>
+</section>
+
+<footer><div class="wrap">Basado en papers públicos y anuncios de las empresas hasta mediados de 2026. Las cifras del embudo y los pesos del simulador son ilustrativos.</div></footer>
+</main>
+
+<main id="pg-cripto" class="page" hidden>
+<header class="hero" id="cr-top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-link"/></svg></span>Capítulo 2 · Blockchain después del hype</span>
+      <h1>El dinero ya ganó. Lo demás está <span class="grad-text">por verse</span>.</h1>
+      <p class="lede">La apuesta: el éxito de blockchain seguirá concentrado en finanzas, con dos o tres excepciones que sí tienen oportunidad real. Va ordenado de más a menos probable.</p>
+      <div class="ctas">
+        <a class="cta main" href="#cr-gano">Ver la apuesta<svg class="ic"><use href="#i-down"/></svg></a>
+        <a class="cta ghost" href="#top" data-go="feed"><svg class="ic" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg>Capítulo 1: tu feed</a>
+      </div>
+    </div>
+    <div class="art cr-art" aria-hidden="true">
+      <div class="ring"></div><div class="ring r2"></div>
+      <i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i>
+      <svg viewBox="0 0 460 420" id="cr-chain" class="chain"></svg>
+      <div class="bub b1"><span class="t" style="background:var(--g-em)"><svg class="ic"><use href="#i-bolt"/></svg></span><div>Pago liquidado<small>24/7, sin horario</small></div></div>
+      <div class="bub b2"><span class="t" style="background:var(--g-gold)"><svg class="ic"><use href="#i-bank"/></svg></span><div>Sin corresponsales<small>directo entre países</small></div></div>
+      <div class="bub b4"><span class="t" style="background:var(--g-cyan)"><svg class="ic"><use href="#i-rules"/></svg></span><div>Regla ejecutada<small>sin árbitro</small></div></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="rank">
+      <div class="rank-axis"><span>Más probable</span><i></i><span>Menos probable</span></div>
+      <a class="rk" href="#cr-gano" style="--c:var(--g-em)"><div class="top"><span class="tile"><svg class="ic"><use href="#i-coin"/></svg></span><span class="n">01</span></div><b>Stablecoins y tokenización</b><span class="tg">Ya ganó</span></a>
+      <a class="rk" href="#cr-agentes" style="--c:linear-gradient(135deg,#04332F,#0FA37F)"><div class="top"><span class="tile"><svg class="ic"><use href="#i-bot"/></svg></span><span class="n">02</span></div><b>Pagos e identidad para agentes de IA</b><span class="tg">Apuesta principal</span></a>
+      <a class="rk" href="#cr-prueba" style="--c:var(--g-gold)"><div class="top"><span class="tile"><svg class="ic"><use href="#i-finger"/></svg></span><span class="n">03</span></div><b>Prueba de humanidad y de origen</b><span class="tg">Problema real, ganador incierto</span></a>
+      <a class="rk" href="#cr-coord" style="--c:var(--g-cyan)"><div class="top"><span class="tile"><svg class="ic"><use href="#i-globe"/></svg></span><span class="n">04</span></div><b>Coordinación sin árbitro confiable</b><span class="tg">Por necesidad, no por moda</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="band deep" id="cr-gano">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-coin"/></svg></span>01 · Lo que ya ganó y seguirá creciendo</span>
+      <h2>Stablecoins: el riel de pagos entre países.</h2>
+      <p class="lede">Es el único producto de blockchain que creció en uso real durante el mercado bajista. Mueve dinero entre países más rápido y más barato que los bancos, y con eso basta.</p>
+    </div>
+    <div class="won">
+      <div class="rails-box rv"><svg class="rails" id="cr-rails" viewBox="0 0 420 300" role="img" aria-label="Comparación: transferencia bancaria con corresponsales contra stablecoin directa"></svg></div>
+      <div class="won-side">
+        <div class="wf rv"><span class="t" style="background:var(--g-em)"><svg class="ic"><use href="#i-trend"/></svg></span><p><b>Creció en el mercado bajista</b><span>Uso real cuando la especulación se cayó.</span></p></div>
+        <div class="wf rv"><span class="t" style="background:var(--g-gold)"><svg class="ic"><use href="#i-bank"/></svg></span><p><b>Adopción sin ideología</b><span>Empresas sin ningún interés en cripto que solo quieren pagar mejor.</span></p></div>
+        <div class="wf rv"><span class="t" style="background:var(--g-cyan)"><svg class="ic"><use href="#i-bolt"/></svg></span><p><b>Más rápido y más barato</b><span>Que una transferencia bancaria internacional.</span></p></div>
+      </div>
+    </div>
+    <div class="tokz rv">
+      <div>
+        <span class="k">Lo que viene con ellas</span>
+        <h3>Tokenización de activos tradicionales</h3>
+        <p>Bonos y fondos representados como tokens. Los grandes gestores ya lo están haciendo porque reduce los costos de liquidación.</p>
+      </div>
+      <div class="tokz-vis" aria-hidden="true">
+        <div class="bond"><b>Bono</b><i></i><i></i><i></i><i></i><span class="seal"></span></div>
+        <svg class="ic"><use href="#i-arrow"/></svg>
+        <div class="tk-grid">
+          <span class="tk">T1</span><span class="tk" style="animation-delay:.15s">T2</span><span class="tk" style="animation-delay:.3s">T3</span>
+          <span class="tk" style="animation-delay:.45s">T4</span><span class="tk" style="animation-delay:.6s">T5</span><span class="tk" style="animation-delay:.75s">T6</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="cr-fuera">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="pill"><span class="dot"><svg class="ic"><use href="#i-globe"/></svg></span>Fuera de finanzas</span>
+      <h2>Tres lugares donde sí hay oportunidad real.</h2>
+      <p class="lede">No todos con la misma certeza. Van de la apuesta más fuerte a la más dudosa.</p>
+    </div>
+    <div class="bets">
+      <article class="bet" id="cr-agentes">
+        <div class="illo rv" style="--c:linear-gradient(135deg,#04332F,#0A5C55 55%,#0FA37F)"><svg viewBox="0 0 440 260" id="cr-ag"></svg><span class="lbl">agente ↔ agente</span></div>
+        <div class="bet-txt rv">
+          <span class="badge" style="background:linear-gradient(135deg,#04332F,#0FA37F)"><span>02</span>Apuesta principal</span>
+          <h3>Pagos e identidad para agentes de IA</h3>
+          <p>Si los agentes van a contratar servicios, pagar APIs y negociar entre sí, necesitan tres cosas que blockchain ya resuelve:</p>
+          <div class="reqs">
+            <div><span class="t" style="background:var(--g-gold)"><svg class="ic"><use href="#i-coin"/></svg></span><p><b>Dinero programable</b><span>Sin cuenta bancaria.</span></p></div>
+            <div><span class="t" style="background:var(--g-cyan)"><svg class="ic"><use href="#i-key"/></svg></span><p><b>Identidad criptográfica</b><span>Sin documentos pensados para humanos.</span></p></div>
+            <div><span class="t" style="background:var(--g-em)"><svg class="ic"><use href="#i-rules"/></svg></span><p><b>Reglas que se ejecutan solas</b><span>Sin un árbitro en medio.</span></p></div>
+          </div>
+          <p class="muted">El sistema tradicional no tiene una alternativa obvia: está diseñado para humanos con documentos.</p>
+          <p class="pull">Aquí blockchain no compite con la IA. <em>La sirve.</em></p>
+        </div>
+      </article>
+
+      <article class="bet" id="cr-prueba">
+        <div class="illo rv" style="--c:linear-gradient(135deg,#F2B705,#FF8A3D)"><svg viewBox="0 0 440 260" id="cr-pr"></svg><span class="lbl">persona · fecha · origen</span></div>
+        <div class="bet-txt rv">
+          <span class="badge" style="background:var(--g-gold)"><span>03</span>Problema real, ganador incierto</span>
+          <h3>Prueba de humanidad y de origen</h3>
+          <p>Cuando cualquier contenido puede ser sintético, demostrar que algo lo hizo una persona, o que un documento existía en cierta fecha, se vuelve valioso.</p>
+          <div class="qs">
+            <span><svg class="ic"><use href="#i-finger"/></svg>¿Lo hizo una persona?</span>
+            <span><svg class="ic"><use href="#i-doc"/></svg>¿Existía en esa fecha?</span>
+            <span><svg class="ic"><use href="#i-shield"/></svg>¿Es el original?</span>
+          </div>
+          <div class="caveat"><span class="t"><svg class="ic"><use href="#i-key"/></svg></span><p>No está claro que blockchain gane aquí. La criptografía sola puede resolver gran parte sin una cadena pública. Lo que sí es seguro: el problema es real y va creciendo.</p></div>
+        </div>
+      </article>
+
+      <article class="bet" id="cr-coord">
+        <div class="illo rv" style="--c:linear-gradient(135deg,#1BA6D9,#2F5BFF)"><svg viewBox="0 0 440 260" id="cr-co"></svg><span class="lbl">ilustrativo, no datos</span></div>
+        <div class="bet-txt rv">
+          <span class="badge" style="background:var(--g-cyan)"><span>04</span>Por necesidad, no por moda</span>
+          <h3>Coordinación donde no hay árbitro confiable</h3>
+          <p>Remesas, ahorro y contratos en países con moneda inestable o estado débil. Ahí la condición de "no hay árbitro aceptable" se cumple de verdad.</p>
+          <div class="qs">
+            <span><svg class="ic"><use href="#i-send"/></svg>Remesas</span>
+            <span><svg class="ic"><use href="#i-piggy"/></svg>Ahorro</span>
+            <span><svg class="ic"><use href="#i-rules"/></svg>Contratos</span>
+          </div>
+          <div class="flags">
+            <span class="flag" style="--c:linear-gradient(135deg,#6FB6E8,#2F7FC1)"><i>AR</i>Argentina</span>
+            <span class="flag" style="--c:linear-gradient(135deg,#12B48C,#0B7A5C)"><i>NG</i>Nigeria</span>
+            <span class="flag" style="--c:linear-gradient(135deg,#FF5B5B,#C2334D)"><i>TR</i>Turquía</span>
+          </div>
+          <p class="muted">Los tres adoptaron stablecoins por necesidad, no por moda.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="bridge rv">
+      <span class="t"><svg class="ic"><use href="#i-bot"/></svg></span>
+      <div><b>El puente con el capítulo 1</b><p>Los mismos modelos que hoy predicen qué vas a ver son la base de los agentes. Si esos agentes empiezan a contratar y pagar, este es el riel que van a necesitar.</p></div>
+      <a class="cta ghost" href="#top" data-go="feed">Ir al capítulo 1<svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0" id="cr-cierre">
+  <div class="wrap">
+    <div class="final rv" style="background:linear-gradient(120deg,#04332F 0%,#0A5C55 35%,#0FA37F 65%,#F2B705 115%)">
+      <i class="bl"></i><i class="bl"></i>
+      <div class="lbl"><svg class="ic"><use href="#i-link"/></svg>En resumen</div>
+      <p class="q">Fuera de finanzas, blockchain gana donde <em>sirve a otro</em>: a los agentes de IA y a quien no tiene un árbitro confiable.</p>
+      <div class="ctas">
+        <a class="cta" href="#cr-top">Volver arriba<svg class="ic" style="transform:rotate(180deg)"><use href="#i-down"/></svg></a>
+        <a class="cta" href="#top" data-go="feed">Capítulo 1</a>
+      </div>
+      <div class="big-ic" aria-hidden="true"><svg viewBox="0 0 120 120" id="cr-bigcube"></svg></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Capítulo 2: una opinión sobre hacia dónde va blockchain. Las gráficas son ilustrativas, no datos.</div></footer>
+</main>
+
+<div class="wipe" id="wipe" aria-hidden="true"><div class="wipe-in"><span class="wipe-k" id="wipe-k">Capítulo 2</span><span class="wipe-t" id="wipe-t">Blockchain después del hype</span></div></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
