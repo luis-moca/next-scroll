@@ -1,9 +1,9 @@
-// Punto de entrada. Cada import ejecuta su módulo, en este orden.
+// Entry point. Each import runs its module, in this order.
 import './util.js';
-import './ilustraciones.js';
-import './embudo.js';
-import './simulador.js';
-import './recomendador.js';
+import './illustrations.js';
+import './funnel.js';
+import './simulator.js';
+import './recommender.js';
 import './scroll.js';
-import './cripto.js';
-import './capitulos.js';
+import './crypto.js';
+import './chapters.js';

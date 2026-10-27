@@ -1,6 +1,6 @@
-/* Accesibilidad: se carga al final a propósito. */
-/* Si la persona pidió en su sistema "reducir movimiento", se apagan las animaciones.
-   Va en el último archivo porque en CSS, a igual especificidad, gana la regla que llega al final. */
+/* Accessibility: loaded last on purpose. */
+/* If the visitor asked their system to "reduce motion", animations are switched off.
+   It goes in the last file because in CSS, at equal specificity, the rule that comes last wins. */
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}

@@ -1,22 +1,22 @@
-// El embudo interactivo: capas clicables y partículas que caen.
+// The interactive funnel: clickable layers and falling particles.
 import { RM, el } from './util.js';
 
-/* embudo */
+/* funnel */
 (function(){
   const S = [
-    {t:'Retrieval', c:'miles de M → ~5,000', g:'gBlue', css:'var(--g-blue)', col:'#2F5BFF', ic:'i-search', y1:20, y2:110, a:190, b:150, h:'Generar candidatos',
-     what:'Junta en milisegundos unos miles de posts que podrían interesarte, de entre todo lo que existe.',
-     li:[['i-net','Modelos two-tower: una red produce el vector del usuario y otra el de cada post.'],['i-search','Búsqueda de vecinos cercanos (FAISS, ScaNN) entre miles de millones de vectores.'],['i-split','Varias fuentes a la vez: gente que sigues, contenido parecido, tendencias, contenido nuevo.']], f:null},
-    {t:'Ranking', c:'~5,000 → ~500', g:'gViolet', css:'var(--g-violet)', col:'#7C4DFF', ic:'i-sort', y1:120, y2:210, a:145, b:110, h:'Ordenar con un modelo pesado',
-     what:'Una red neuronal grande calcula varias probabilidades por cada candidato y las combina en un solo score de valor.',
-     li:[['i-target','Predice like, comentar, compartir, tiempo de vista y reportar al mismo tiempo.'],['i-user','Usa cientos de señales: tu historial, el creador, el contexto, la hora.'],['i-chip','Aquí es donde más cómputo se gasta.']],
-     f:'valor = <span class="w">1.0</span> · <span class="p">P(ver completo)</span>\n      + <span class="w">2.0</span> · <span class="p">P(compartir)</span>\n      + <span class="w">0.5</span> · <span class="p">P(like)</span>\n      − <span class="w">5.0</span> · <span class="p">P(reportar)</span>\n<span class="cm">// pesos ilustrativos; se ajustan con A/B tests</span>'},
-    {t:'Re-ranking', c:'~500 → ~50', g:'gCoral', css:'var(--g-coral)', col:'#FF5B5B', ic:'i-shuffle', y1:220, y2:310, a:105, b:72, h:'Ajustar el orden final',
-     what:'Corrige lo que un orden puramente por score haría mal.',
-     li:[['i-shuffle','Diversidad: que no salgan cinco videos seguidos del mismo creador o tema.'],['i-eye','Integridad y moderación: contenido sensible, frescura, reglas de negocio.'],['i-mega','Mezcla los anuncios en las posiciones correctas.']], f:null},
-    {t:'Tu feed', c:'→ 1 a la vez', g:'gAmber', css:'var(--g-amber)', col:'#FFA51F', ic:'i-phone', y1:320, y2:400, a:67, b:40, h:'Servir y escuchar',
-     what:'Ves el resultado, y cada cosa que haces se vuelve datos para el siguiente ciclo.',
-     li:[['i-hand','Cada scroll, pausa y repetición se registra como señal.'],['i-wave','Esas señales llegan por streaming a los modelos en minutos.'],['i-clock','Todo el ciclo dura unos 100–200 ms.']], f:null}
+    {t:'Retrieval', c:'billions → ~5,000', g:'gBlue', css:'var(--g-blue)', col:'#2F5BFF', ic:'i-search', y1:20, y2:110, a:190, b:150, h:'Generate candidates',
+     what:'In milliseconds, it pulls a few thousand posts that might interest you out of everything that exists.',
+     li:[['i-net','Two-tower models: one network produces your vector and another one produces a vector for each post.'],['i-search','Nearest-neighbor search (FAISS, ScaNN) across billions of vectors.'],['i-split','Several sources at once: people you follow, similar content, trends, fresh content.']], f:null},
+    {t:'Ranking', c:'~5,000 → ~500', g:'gViolet', css:'var(--g-violet)', col:'#7C4DFF', ic:'i-sort', y1:120, y2:210, a:145, b:110, h:'Rank with a heavy model',
+     what:'A large neural network estimates several probabilities for each candidate and blends them into a single value score.',
+     li:[['i-target','It predicts likes, comments, shares, watch time and reports, all at once.'],['i-user','It uses hundreds of signals: your history, the creator, the context, the time of day.'],['i-chip','This is where most of the compute goes.']],
+     f:'value = <span class="w">1.0</span> · <span class="p">P(watch to the end)</span>\n      + <span class="w">2.0</span> · <span class="p">P(share)</span>\n      + <span class="w">0.5</span> · <span class="p">P(like)</span>\n      − <span class="w">5.0</span> · <span class="p">P(report)</span>\n<span class="cm">// illustrative weights,\n// tuned with A/B tests</span>'},
+    {t:'Re-ranking', c:'~500 → ~50', g:'gCoral', css:'var(--g-coral)', col:'#FF5B5B', ic:'i-shuffle', y1:220, y2:310, a:105, b:72, h:'Fix the final order',
+     what:'It corrects what a purely score-based order would get wrong.',
+     li:[['i-shuffle','Diversity: no five videos in a row from the same creator or topic.'],['i-eye','Integrity and moderation: sensitive content, freshness, business rules.'],['i-mega','It slots the ads into the right positions.']], f:null},
+    {t:'Your feed', c:'→ 1 at a time', g:'gAmber', css:'var(--g-amber)', col:'#FFA51F', ic:'i-phone', y1:320, y2:400, a:67, b:40, h:'Serve and listen',
+     what:'You see the result, and everything you do becomes data for the next loop.',
+     li:[['i-hand','Every scroll, pause and replay is logged as a signal.'],['i-wave','Those signals stream back to the models within minutes.'],['i-clock','The whole loop takes about 100–200 ms.']], f:null}
   ];
   const svg = document.getElementById('fsvg'), panel = document.getElementById('panel');
   const defs = el('defs', {}, svg);
@@ -36,11 +36,11 @@ import { RM, el } from './util.js';
     });
     return g;
   });
-  // celular al fondo
+  // phone at the bottom
   const ph = el('g', {transform:'translate(184 414)'}, svg);
   el('rect', {x:0, y:0, width:32, height:52, rx:8, fill:'#0A1A5C'}, ph);
   el('rect', {x:4, y:6, width:24, height:36, rx:3, fill:'url(#gAmber)'}, ph);
-  // partículas
+  // particles
   const pg = el('g', {'clip-path':'url(#fclip)', 'pointer-events':'none'}, svg);
   const pts = [[20,190],[110,150],[115,147],[120,145],[210,110],[215,107],[220,105],[310,72],[315,70],[320,67],[400,40]];
   const half = y => { for (let i = 1; i < pts.length; i++){ if (y <= pts[i][0]){ const [y0,h0] = pts[i-1], [y1,h1] = pts[i]; return h0 + (h1 - h0) * (y - y0) / (y1 - y0); } } return 40; };
@@ -64,7 +64,7 @@ import { RM, el } from './util.js';
     const s = S[i];
     panel.style.setProperty('--c', s.col);
     panel.innerHTML = `<div class="fade" style="display:grid;gap:18px;position:relative">
-      <div class="head"><span class="tile" style="background:${s.css}"><svg class="ic"><use href="#${s.ic}"/></svg></span><div><div class="eb">Etapa ${i+1} de 4 · ${s.c}</div><h3>${s.h}</h3></div></div>
+      <div class="head"><span class="tile" style="background:${s.css}"><svg class="ic"><use href="#${s.ic}"/></svg></span><div><div class="eb">Stage ${i+1} of 4 · ${s.c}</div><h3>${s.h}</h3></div></div>
       <p class="muted">${s.what}</p>
       <ul>${s.li.map(([ic, x]) => `<li><svg class="ic"><use href="#${ic}"/></svg><span>${x}</span></li>`).join('')}</ul>
       ${s.f ? `<div class="formula">${s.f}</div>` : ''}

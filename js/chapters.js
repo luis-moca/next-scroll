@@ -1,18 +1,18 @@
-// Cambio entre capítulos con la cortina de color.
+// Switching between chapters with the color wipe.
 import { RM } from './util.js';
 import { onScroll, initReveal } from './scroll.js';
 
-/* cambio de capítulo */
+/* chapter switch */
 (function(){
-  const pages = {feed:document.getElementById('pg-feed'), cripto:document.getElementById('pg-cripto')};
+  const pages = {feed:document.getElementById('pg-feed'), crypto:document.getElementById('pg-crypto')};
   const wipe = document.getElementById('wipe');
-  const TXT = {feed:['Capítulo 1','Cómo piensa tu feed'], cripto:['Capítulo 2','Blockchain después del hype']};
+  const TXT = {feed:['Chapter 1','How Your Feed Thinks'], crypto:['Chapter 2','Blockchain After the Hype']};
   let chapter = 'feed', busy = false;
   function show(c){
     Object.keys(pages).forEach(k => pages[k].hidden = k !== c);
     document.documentElement.dataset.chapter = c;
     document.getElementById('chap-feed').classList.toggle('on', c === 'feed');
-    document.getElementById('chap-cripto').classList.toggle('on', c === 'cripto');
+    document.getElementById('chap-crypto').classList.toggle('on', c === 'crypto');
     chapter = c;
     const h = document.documentElement, prev = h.style.scrollBehavior;
     h.style.scrollBehavior = 'auto'; scrollTo(0, 0); h.style.scrollBehavior = prev;
@@ -35,10 +35,10 @@ import { onScroll, initReveal } from './scroll.js';
     if (!b) return;
     e.preventDefault(); go(b.dataset.go);
   });
-  if (location.hash === '#cripto'){
+  if (location.hash === '#crypto'){
     document.documentElement.classList.add('instant');
-    show('cripto');
+    show('crypto');
     requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.remove('instant')));
   }
-  addEventListener('hashchange', () => { if (location.hash === '#cripto') go('cripto'); });
+  addEventListener('hashchange', () => { if (location.hash === '#crypto') go('crypto'); });
 })();

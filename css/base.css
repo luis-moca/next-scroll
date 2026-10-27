@@ -1,5 +1,5 @@
-/* Base: colores (tokens), tipografía, fondo animado, barra de navegación y cambio de capítulo. */
-/* Layout: aurora de color en movimiento como fondo, bandas azul marino de contraste, cada sección con su ilustración animada */
+/* Base: color tokens, typography, animated background, navigation bar and chapter switch. */
+/* Layout: a moving color aurora as background, navy contrast bands, an animated illustration per section */
 :root{
   --bg:#EDF1FF; --fg:#0B1440; --muted:#4A5784; --line:rgba(11,20,64,.12);
   --glass:rgba(255,255,255,.62); --glass-strong:rgba(255,255,255,.86);
@@ -18,21 +18,21 @@
   --s-xs:.8125rem; --s-sm:.9375rem; --s-md:1.0625rem; --s-lg:1.375rem;
   --s-xl:clamp(2rem,4vw,3.25rem); --s-hero:clamp(2.75rem,7.2vw,5.75rem);
   --r:22px; --ease:cubic-bezier(.2,.7,.1,1);
-  /* capítulo 2: rieles de dinero, esmeralda + oro */
+  /* chapter 2: money rails, emerald + gold */
   --g-feed:linear-gradient(100deg,#2F5BFF 0%,#7C4DFF 45%,#FF5B5B 100%);
   --g-chain:linear-gradient(100deg,#0FA37F 0%,#1BA6D9 50%,#F2B705 100%);
   --g-em:linear-gradient(135deg,#0FA37F,#1BA6D9); --g-gold:linear-gradient(135deg,#F2B705,#FF8A3D);
   --g-cyan:linear-gradient(135deg,#1BA6D9,#5B6BFF); --g-lime:linear-gradient(135deg,#8BD448,#0FA37F);
-  --teal-deep:#04332F; --emerald:#0FA37F; --bg-cripto:#E4F8F1;
+  --teal-deep:#04332F; --emerald:#0FA37F; --bg-crypto:#E4F8F1;
   --a1:#8DABFF; --a2:#FFB0C4; --a3:#FFE08C; --a4:#9EF0D5; --a5:#C8B4FF;
   color-scheme:light;
 }
-:root[data-chapter="cripto"]{
-  --bg:var(--bg-cripto); --g-hero:var(--g-chain); --navy:var(--teal-deep); --violet:var(--emerald); --blue:#0B7FB0;
+:root[data-chapter="crypto"]{
+  --bg:var(--bg-crypto); --g-hero:var(--g-chain); --navy:var(--teal-deep); --violet:var(--emerald); --blue:#0B7FB0;
   --a1:#7FE3C8; --a2:#FFD86B; --a3:#8FDFFF; --a4:#C5F08A; --a5:#7FC8FF;
 }
 *{box-sizing:border-box}
-/* reset mínimo: quita el margen que el navegador pone al body y respeta el atributo hidden aunque el elemento tenga display propio */
+/* minimal reset: removes the browser's default body margin and makes the hidden attribute win even when an element sets its own display */
 body{margin:0}
 img{max-width:100%}
 [hidden]{display:none!important}
@@ -59,7 +59,7 @@ p{margin:0}
 .lede{font-size:clamp(1.0625rem,1.6vw,1.25rem);color:var(--muted);max-width:60ch}
 .muted{color:var(--muted)}
 .mono{font-family:var(--f-mono)}
-/* aurora de fondo */
+/* background aurora */
 .aurora{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
 .aurora i{position:absolute;width:52vmax;height:52vmax;border-radius:50%;filter:blur(80px);opacity:.75;animation:drift 26s ease-in-out infinite alternate;transition:background-color 1.4s var(--ease)}
 .aurora i:nth-child(1){background-color:var(--a1);left:-14vmax;top:-18vmax}
@@ -81,10 +81,10 @@ p{margin:0}
 .nav a.lnk.on{color:#fff;background:var(--navy)}
 .progress{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--g-hero);transform-origin:0 50%;transform:scaleX(var(--p,0))}
 @media (max-width:700px){.brand span{display:none}.nav-in ul{display:none!important}.chap{margin-left:auto}}
-/* reveal: arranca visible, solo se desliza */
+/* reveal: starts visible, only slides in */
 .rv{transition:transform 1s var(--ease),opacity 1s var(--ease)}
 .js .rv.pre{transform:translateY(46px) scale(.97);opacity:.3}
-/* ===== capítulos ===== */
+/* ===== chapters ===== */
 body{transition:background-color 1.2s var(--ease)}
 .instant,.instant *,.instant body{transition:none!important}
 .chap{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(11,20,64,.06);flex:none}
@@ -93,9 +93,9 @@ body{transition:background-color 1.2s var(--ease)}
 .chap button.on{background:var(--navy);color:#fff}
 .chap button:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
 .nav ul{min-width:0}
-.nav ul[data-for="cripto"]{display:none}
-:root[data-chapter="cripto"] .nav ul[data-for="feed"]{display:none}
-:root[data-chapter="cripto"] .nav ul[data-for="cripto"]{display:flex}
+.nav ul[data-for="crypto"]{display:none}
+:root[data-chapter="crypto"] .nav ul[data-for="feed"]{display:none}
+:root[data-chapter="crypto"] .nav ul[data-for="crypto"]{display:flex}
 .wipe{position:fixed;inset:0;z-index:80;pointer-events:none;background:var(--g-chain);transform:translateY(101%);display:grid;place-items:center;color:#fff}
 .wipe.to-feed{background:var(--g-feed)}
 .wipe.go{animation:wipe 1.15s cubic-bezier(.7,0,.2,1) forwards}

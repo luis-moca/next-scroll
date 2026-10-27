@@ -1,9 +1,9 @@
-# Ambiente de Python: se recrea con `python3 -m venv .venv && .venv/bin/pip install numpy`
+# Python environment: recreate with `python3 -m venv .venv && .venv/bin/pip install numpy`
 .venv/
 
-# Datos crudos de MovieLens: se bajan de files.grouplens.org (ml-latest-small.zip)
-modelo/datos_crudos/
+# Raw MovieLens data: download from files.grouplens.org (ml-latest-small.zip)
+model/raw_data/
 
-# Configuración local del editor y de Claude
+# Local editor and Claude settings
 .claude/
 .DS_Store

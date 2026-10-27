@@ -1,7 +1,7 @@
-// Todo lo que reacciona al scroll: barra de progreso, línea de tiempo, nav activa y aparición de secciones.
+// Everything that reacts to scrolling: progress bar, timeline, active nav link and sections fading in.
 import { RM } from './util.js';
 
-/* scroll: progreso, timeline, nav activa */
+/* scroll: progress, timeline, active nav */
 const prog = document.getElementById('progress');
 const tl = document.getElementById('tl'), tlLine = tl.querySelector('.tl-line');
 const eras = [...tl.querySelectorAll('.era')];
@@ -21,7 +21,7 @@ addEventListener('scroll', onScroll, {passive:true});
 addEventListener('resize', onScroll);
 onScroll();
 
-/* reveal: solo lo que está debajo del primer frame */
+/* reveal: only what is below the first screen */
 export function initReveal(root){
   if (RM || !('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver(es => es.forEach(e => {
@@ -33,7 +33,7 @@ export function initReveal(root){
 }
 initReveal(document.getElementById('pg-feed'));
 
-/* brillo que sigue al cursor */
+/* glow that follows the cursor */
 document.querySelectorAll('.glow').forEach(c => c.addEventListener('pointermove', e => {
   const r = c.getBoundingClientRect();
   c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');

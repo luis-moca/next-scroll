@@ -1,4 +1,4 @@
-// Herramientas compartidas: preferencia de movimiento y un atajo para crear elementos SVG.
+// Shared helpers: reduced-motion preference and a shortcut to create SVG elements.
 
 document.documentElement.classList.add('js');
 export const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -1,8 +1,8 @@
-// Ilustraciones animadas del capítulo 1.
+// Chapter 1 animated illustrations.
 import { RM, el } from './util.js';
-import { PIC, T } from './datos.js';
+import { PIC, T } from './data.js';
 
-/* hero: feed que hace scroll solo */
+/* hero: a feed that scrolls by itself */
 (function(){
   const f = document.getElementById('hero-feed');
   const order = [1,0,3,5,2,4];
@@ -25,7 +25,7 @@ import { PIC, T } from './datos.js';
 (function(){
   if (RM) return;
   const el2 = document.getElementById('typed');
-  const phrases = ['El perro le ladra al','Me gusta el café con','Vio fútbol, le dio like a tacos, siguiente:'];
+  const phrases = ['The dog barks at the','I take my coffee with','Watched soccer, liked tacos, next up:'];
   let pi = 0, ci = phrases[0].length, del = false;
   setInterval(() => {
     const p = phrases[pi];
@@ -35,7 +35,7 @@ import { PIC, T } from './datos.js';
   }, 90);
 })();
 
-/* ilustración: matriz */
+/* illustration: matrix */
 (function(){
   const s = document.getElementById('ill-matrix');
   const vals = [
@@ -59,7 +59,7 @@ import { PIC, T } from './datos.js';
   }));
 })();
 
-/* ilustración: red neuronal */
+/* illustration: neural network */
 (function(){
   const s = document.getElementById('ill-net');
   const L = [4,6,6,3], X = [30,115,200,262];
@@ -73,11 +73,11 @@ import { PIC, T } from './datos.js';
   pos.forEach((layer, li) => layer.forEach((p, i) => {
     el('circle', {cx:p[0], cy:p[1], r: li === 3 ? 9 : 7, fill: li === 3 ? '#FFC94A' : '#fff', class:'nn-node', style:`animation-delay:${(li * .3 + i * .12).toFixed(2)}s`}, s);
   }));
-  ['like','compartir','ver'].forEach((t, i) => { const tx = el('text', {x:276, y:pos[3][i][1] + 4, fill:'#fff', 'font-family':'JetBrains Mono, monospace', 'font-size':10, 'font-weight':600}, s); tx.textContent = t; });
-  const it = el('text', {x:30, y:196, fill:'#fff', 'fill-opacity':.8, 'font-family':'JetBrains Mono, monospace', 'font-size':9, 'text-anchor':'middle'}, s); it.textContent = 'señales';
+  ['like','share','watch'].forEach((t, i) => { const tx = el('text', {x:276, y:pos[3][i][1] + 4, fill:'#fff', 'font-family':'JetBrains Mono, monospace', 'font-size':10, 'font-weight':600}, s); tx.textContent = t; });
+  const it = el('text', {x:30, y:196, fill:'#fff', 'fill-opacity':.8, 'font-family':'JetBrains Mono, monospace', 'font-size':9, 'text-anchor':'middle'}, s); it.textContent = 'signals';
 })();
 
-/* ilustración: transformer */
+/* illustration: transformer */
 (function(){
   const s = document.getElementById('ill-tf');
   const icons = ['i-play','i-heart','i-skip','i-share','i-eye'];
@@ -96,10 +96,10 @@ import { PIC, T } from './datos.js';
   el('rect', {x:xs[5], y, width:w, height:40, rx:10, fill:'#FFC94A', stroke:'#fff', 'stroke-width':2, 'stroke-dasharray':'4 3'}, q);
   const qt = el('text', {x:cx(5), y:y + 26, 'text-anchor':'middle', 'font-family':'Bricolage Grotesque, sans-serif', 'font-weight':800, 'font-size':20, fill:'#7A3E00'}, q); qt.textContent = '?';})();
 
-/* pipeline de datos */
+/* data pipeline */
 (function(){
   const svg = document.getElementById('pipe'), nodes = document.getElementById('pipe-nodes'), dots = document.getElementById('pipe-dots');
-  const N = [['Tu app','scroll, likes','i-phone','gCoral'],['Streaming','Kafka · Flink','i-wave','gViolet'],['Feature store','señales frescas','i-db','gBlue'],['Modelo','GPU · minutos','i-chip','gAmber'],['Tu feed','siguiente video','i-play','gViolet']];
+  const N = [['Your app','scrolls, likes','i-phone','gCoral'],['Streaming','Kafka · Flink','i-wave','gViolet'],['Feature store','fresh signals','i-db','gBlue'],['Model','GPU · minutes','i-chip','gAmber'],['Your feed','next video','i-play','gViolet']];
   N.forEach(([t, s, ic, g], i) => {
     const x = 70 + i * 190;
     const gg = el('g', {}, nodes);
@@ -116,15 +116,15 @@ import { PIC, T } from './datos.js';
   }
 })();
 
-/* stream de tokens */
+/* token stream */
 (function(){
-  const A = [['i-play','vio'],['i-heart','like'],['i-skip','saltó'],['i-share','compartió'],['i-loop','repitió']];
-  const K = ['fútbol','tacos','memes','autos','beats','tech','pozole','off-road'];
+  const A = [['i-play','watched'],['i-heart','liked'],['i-skip','skipped'],['i-share','shared'],['i-loop','rewatched']];
+  const K = ['soccer','tacos','memes','cars','beats','tech','pozole','off-road'];
   const st = document.getElementById('stream');
   const rnd = a => a[Math.floor(Math.random() * a.length)];
   const tok = () => { const a = rnd(A); return `<svg class="ic"><use href="#${a[0]}"/></svg>${a[1]} ${rnd(K)}`; };
   const make = (h, cls) => { const s = document.createElement('span'); s.className = 'tok ' + (cls || ''); s.innerHTML = h; return s; };
-  const Q = '<svg class="ic"><use href="#i-spark"/></svg>siguiente ?';
+  const Q = '<svg class="ic"><use href="#i-spark"/></svg>next ?';
   for (let i = 0; i < 5; i++) st.appendChild(make(tok()));
   let nx = make(Q, 'next'); st.appendChild(nx);
   if (RM) return;

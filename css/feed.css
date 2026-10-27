@@ -1,4 +1,4 @@
-/* Capítulo 1: cómo piensa tu feed. */
+/* Chapter 1: how your feed thinks. */
 /* hero */
 .hero{position:relative;padding-block:clamp(40px,7vw,90px) clamp(48px,7vw,80px)}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,64px);align-items:center}
@@ -58,7 +58,7 @@
 .ticker span{font-family:var(--f-display);font-weight:800;font-size:clamp(1.25rem,2.4vw,1.75rem);letter-spacing:-.02em;color:var(--fg);opacity:.85;display:flex;align-items:center;gap:40px;white-space:nowrap}
 .ticker span::after{content:"";width:10px;height:10px;border-radius:3px;background:var(--g-hero);transform:rotate(45deg)}
 @keyframes marq{to{transform:translateX(-50%)}}
-/* premisa */
+/* premise */
 .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch}
 .vs-card{position:relative;border-radius:28px;padding:clamp(24px,3.4vw,40px);display:grid;gap:16px;align-content:start;overflow:hidden;min-width:0;box-shadow:var(--shadow)}
 .vs-card.a{background:linear-gradient(160deg,#FFFFFF 0%,#E3EAFF 100%);border:1px solid var(--line)}
@@ -108,7 +108,7 @@
   .era-node{left:22px;top:24px;width:44px;height:44px;margin:-22px 0 0 -22px;font-size:19px;border-radius:14px}
   .facts{grid-template-columns:1fr}
 }
-/* animaciones de ilustraciones */
+/* illustration animations */
 .cell-pred{animation:pred 6s ease-in-out infinite}
 @keyframes pred{0%,15%{opacity:0;transform:scale(.6)}30%,70%{opacity:1;transform:scale(1)}85%,100%{opacity:0;transform:scale(.6)}}
 .draw{stroke-dasharray:240;stroke-dashoffset:240;animation:draw 5s var(--ease) infinite}
@@ -123,7 +123,7 @@
 @keyframes att{0%,100%{opacity:.15}50%{opacity:1}}
 .qtok{animation:qpulse 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes qpulse{50%{transform:scale(1.08)}}
-/* embudo */
+/* funnel */
 .funnel{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(24px,5vw,72px);align-items:center}
 .fsvg{width:100%;max-width:470px;margin-inline:auto;display:block;overflow:visible}
 .fsvg .layer{cursor:pointer;transition:opacity .4s,transform .5s var(--ease);transform-box:fill-box;transform-origin:center}
@@ -153,7 +153,7 @@
 .tab[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
 .tab:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
 @media (max-width:900px){.funnel{grid-template-columns:1fr}.panel{min-height:0}}
-/* banda navy */
+/* navy band */
 .navy{background:radial-gradient(60% 80% at 10% 0%,rgba(47,91,255,.55),transparent 60%),radial-gradient(50% 70% at 100% 100%,rgba(255,79,160,.35),transparent 60%),radial-gradient(40% 50% at 70% 20%,rgba(124,77,255,.4),transparent 60%),var(--navy);color:var(--on-navy);overflow:hidden}
 .navy .lede,.navy .muted{color:var(--on-navy-muted)}
 .navy .pill{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:var(--on-navy);box-shadow:none}
@@ -175,7 +175,7 @@
 .beat .ic{animation:glow 1.8s ease-in-out infinite}
 @media (max-width:900px){.infra{grid-template-columns:1fr 1fr}.icard,.icard.w3{grid-column:auto}}
 @media (max-width:560px){.infra{grid-template-columns:1fr}}
-/* simulador */
+/* simulator */
 .tt{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,64px);align-items:center}
 .tt-copy{display:grid;gap:16px;min-width:0}
 .why{display:grid;gap:12px;margin-top:8px}
@@ -217,7 +217,7 @@
 .reset:focus-visible{outline:2px solid var(--violet)}
 @media (max-width:1000px){.tt{grid-template-columns:1fr}}
 @media (max-width:560px){.sim{grid-template-columns:1fr}.mini{max-width:260px;margin-inline:auto;width:100%}}
-/* antes / después */
+/* before / after */
 .swap-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .sw{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);align-items:center;gap:10px;padding:12px;border-radius:22px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(8px);transition:transform .35s var(--ease)}
 .sw:hover{transform:translateY(-4px)}
@@ -230,7 +230,7 @@
 @keyframes nudge{50%{transform:translateX(4px)}}
 @media (max-width:900px){.swap-list{grid-template-columns:1fr}}
 @media (max-width:460px){.sw{grid-template-columns:1fr;justify-items:stretch}.sw .arr{justify-self:center;transform:rotate(90deg)}}
-/* hoy */
+/* today */
 .gen{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center;margin-bottom:clamp(32px,5vw,56px);padding:clamp(26px,4vw,48px);border-radius:32px;background:linear-gradient(135deg,#0A1A5C 0%,#2F2A9E 55%,#7C4DFF 100%);color:var(--on-navy);overflow:hidden;box-shadow:var(--shadow)}
 .gen::after{content:"";position:absolute;width:380px;height:380px;right:-120px;bottom:-160px;border-radius:50%;background:#FF5B9E;filter:blur(70px);opacity:.45;animation:drift 18s ease-in-out infinite alternate}
 .gen > *{position:relative;z-index:1}
@@ -262,7 +262,7 @@
 @media (max-width:1060px){.edge{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:860px){.gen{grid-template-columns:1fr}}
 @media (max-width:540px){.edge{grid-template-columns:1fr}}
-/* lecturas */
+/* reading */
 .reads{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .read{display:grid;grid-template-rows:auto 1fr;border-radius:26px;overflow:hidden;text-decoration:none;color:var(--fg);background:var(--glass-strong);border:1px solid var(--line);transition:transform .45s var(--ease),box-shadow .45s}
 .read:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
@@ -284,7 +284,7 @@
 .extra a:hover{transform:translateY(-3px)}
 .extra a .ic{color:var(--violet)}
 @media (max-width:900px){.reads{grid-template-columns:1fr}}
-/* cierre */
+/* closing */
 .final{position:relative;border-radius:40px;padding:clamp(40px,8vw,96px) clamp(24px,6vw,80px);background:linear-gradient(120deg,#0A1A5C 0%,#2F2A9E 40%,#7C4DFF 70%,#FF5B5B 110%);color:#fff;overflow:hidden;box-shadow:var(--shadow)}
 .final i.bl{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:drift 16s ease-in-out infinite alternate}
 .final i.bl:nth-child(1){width:300px;height:300px;background:#FFA51F;right:-60px;top:-80px}
@@ -297,7 +297,7 @@
 .final .big-ic svg{width:100%;height:auto;display:block}
 @media (max-width:640px){.final .big-ic{display:none}}
 footer{padding-block:36px 48px;font-size:12px;color:var(--muted);font-family:var(--f-mono)}
-/* teaser del capítulo 2 */
+/* chapter 2 teaser */
 .next-ch{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px;align-items:center;padding:clamp(28px,5vw,60px);border-radius:40px;text-decoration:none;color:#fff;background:linear-gradient(120deg,#04332F 0%,#0A5C55 40%,#0FA37F 75%,#F2B705 125%);box-shadow:var(--shadow);overflow:hidden;transition:transform .5s var(--ease)}
 .next-ch:hover{transform:translateY(-6px)}
 .next-ch::before{content:"";position:absolute;width:320px;height:320px;left:-120px;bottom:-160px;border-radius:50%;background:#1BA6D9;filter:blur(70px);opacity:.5;animation:drift 18s ease-in-out infinite alternate}

@@ -1,5 +1,4 @@
-/* Capítulo 2: blockchain después del hype. */
-/* capítulo 2: blockchain */
+/* Chapter 2: blockchain after the hype. */
 .chain{position:absolute;inset:3%;width:94%;height:94%;overflow:visible}
 .cube{animation:cbob 5s ease-in-out infinite}
 @keyframes cbob{50%{transform:translateY(-10px)}}

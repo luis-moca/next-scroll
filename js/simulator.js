@@ -1,8 +1,8 @@
-// Simulador tipo TikTok: señales, perfil de gustos y exploración.
+// TikTok-style simulator: signals, taste profile and exploration.
 import { RM } from './util.js';
-import { PIC, T } from './datos.js';
+import { PIC, T } from './data.js';
 
-/* simulador */
+/* simulator */
 (function(){
   const n = T.length;
   let w = new Array(n).fill(0), cur = 1, sig = 0, explored = false, log = [];
@@ -54,7 +54,7 @@ import { PIC, T } from './datos.js';
   eps.addEventListener('input', render);
   document.getElementById('reset').addEventListener('click', () => {
     w = new Array(n).fill(0); sig = 0; log = [];
-    document.getElementById('log').innerHTML = '<span>Toca un botón para mandar tu primera señal.</span>';
+    document.getElementById('log').innerHTML = '<span>Tap a button to send your first signal.</span>';
     cur = 1; explored = false; show(); render();
   });
   show(); render();
